@@ -1,14 +1,14 @@
-
 import os
 import sys
 from openai import OpenAI
 from src.rag import RAG
 from src.logging import get_logger
-from src.env import ENV_VARS, OPENAI_KEY, OPENAI_MODEL
+from src.env import ENV_VARS, OPENAI_KEY, OPENAI_MODEL, OPENAI_BASE_URL
 
 # --------------- Configuration ---------------- #
 OPENAI_MODEL = ENV_VARS[OPENAI_MODEL]
 OPENAI_KEY_VALUE = ENV_VARS[OPENAI_KEY]
+OPENAI_BASE_URL = ENV_VARS[OPENAI_BASE_URL]
 
 # --------------- Logging ---------------- #
 logger = get_logger(__name__)
@@ -18,7 +18,7 @@ class ChatBotWithRAG:
         logger.debug("Initializing ChatBotWithRAG")
         try:
             client = OpenAI(
-                base_url="https://api.mistral.ai/v1/",  
+                base_url=OPENAI_BASE_URL,  
                 api_key=OPENAI_KEY_VALUE,
             )
             self.client = client

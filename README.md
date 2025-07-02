@@ -24,11 +24,18 @@ A RAG-powered chatbot for medical document consultation using Mistral AI (OpenAI
    export OPENAI_KEY=your_api_key_here
    ```
 
-2. **Build and run the chatbot:**
+2. **Load the pip dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   *Or, if you are using Docker, this step is handled automatically during the build process.*
+
+
+3. **Build and run the chatbot:**
 
 - Using Docker: 
    ```bash
-   ./build_and_run.sh
+   ./docker_build_and_run.sh
    ```
 
 - Running the app locally:
@@ -46,6 +53,38 @@ Once running, the chatbot will be available at `http://localhost:8501`
 - Sentence Transformers for embeddings
 - Mistral AI for text generation
 - Streamlit for the web interface
+
+
+## Folder architecture
+
+```txt
+chatbot                      # Main application folder
+├── data                     # Markdown files used for the RAG context
+│   └── file*.md
+├── images                   # Images for the UI 
+│   ├── chu.png
+│   └── erios.png
+├── prompts                  # Prompt templates for the chatbot
+│   ├── system.md            # System prompt
+│   └── generateChatName.md  # Prompt to generate chat name
+├── src                      # Main source code for the chatbot
+│   ├── __init__.py          # Marks the folder as a Python package
+│   ├── chatBotWithRAG.py    # Main logic for chatbot with RAG
+│   ├── env.py               # Environment variable and config management
+│   ├── eriosChatBot.py      # Core chatbot logic
+│   ├── logging.py           # Logging utilities
+│   ├── prompts.py           # Prompt management
+│   └── rag.py               # Document retrieval and RAG functions
+└── chat.py                  # Main entry point to launch the chatbot - with the streamlit UI
+
+documents                    # Source of truth documents; originals of the files stored in the data folder
+└── files*.docx              
+
+build_and_run.sh             # Script to build and run the app with Docker
+eriosChatBot.Dockerfile      # Dockerfile for building the chatbot imag
+requirements.txt             # Python dependencies
+run.sh                       # Script to run the app locally (without Docker)
+```
 
 ----
 # Test techniques - 3 questions
@@ -78,10 +117,10 @@ Source : Tableau "Critères diagnostic de pneumopathie aigue grave" – Document
 
 Réponse: 
 ```code
-Les posologies et voies d’administration de la spiramycine pour le traitement des pneumopathies aiguës communautaires sont les suivantes :
+Les posologies et voies d'administration de la spiramycine pour le traitement des pneumopathies aiguës communautaires sont les suivantes :
 - Hors soins critiques : 1,5 MUI à 3 MUI trois fois par jour (x3/j) par voie intraveineuse (IV).
 - En soins critiques : 3 MUI trois fois par jour (x3/j) par voie intraveineuse (IV).
-Source : Tableau "Posologies et voies d’administration des antibiotiques" – Document "Prise en charge des Pneumopathies aigues communautaires V2.md"
+Source : Tableau "Posologies et voies d'administration des antibiotiques" – Document "Prise en charge des Pneumopathies aigues communautaires V2.md"
 ```
 
 3 - `Quelles sont les prises en charge en ambulatoire ou à l'hôpital des pneumonies communautaires dans le cas où il n'y a pas de signes de gravité, ni de situations particulières ?`

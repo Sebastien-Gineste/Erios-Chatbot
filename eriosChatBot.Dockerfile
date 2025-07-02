@@ -14,7 +14,7 @@ RUN useradd -m -u 1000 user
 COPY --chown=user ./chatbot/ /app/
 COPY --chown=user ./requirements.txt /app/requirements.txt
 
-RUN pip3 install -r /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 USER user
 

@@ -2,7 +2,7 @@ import streamlit as st
 import sys
 import uuid
 from src.logging import get_logger
-from src.eriosChatBot import EriosChatBot
+from src.erios_chat_bot import EriosChatBot
 
 # --------------- Configuration ---------------- #
 IMAGE_PATH = "./images/"
@@ -65,8 +65,8 @@ except Exception as e:
 # === FIRST PAGE: No active chat ===
 if st.session_state['active_chat'] is None:
     try:
-        st.image(IMAGE_PATH+"/chu.png", width=200)
-        st.image(IMAGE_PATH+"/erios.png", width=200)
+        st.image(IMAGE_PATH+"/chu.png", width=300)
+        st.image(IMAGE_PATH+"/erios.png", width=300)
         st.write("## Démarrer une nouvelle conversation")
 
         st.divider()

@@ -5,7 +5,7 @@ import sys
 from typing import Optional 
 
 from src.prompts import INITIAL_PROMPT, GENERATE_CHAT_NAME_PROMPT
-from src.chatBotWithRAG import ChatBotWithRAG
+from src.chat_bot_with_rag import ChatBotWithRAG
 from src.logging import get_logger
 
 logger = get_logger(__name__)

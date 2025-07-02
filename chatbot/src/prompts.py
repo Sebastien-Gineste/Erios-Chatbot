@@ -17,4 +17,4 @@ def read_prompt_file(prompt_name: str) -> str:
     
 
 INITIAL_PROMPT = read_prompt_file("system")
-GENERATE_CHAT_NAME_PROMPT = read_read_prompt_fileprompt("generateChatName")
+GENERATE_CHAT_NAME_PROMPT = read_prompt_file("generateChatName")
