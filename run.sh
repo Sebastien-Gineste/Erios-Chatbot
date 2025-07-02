@@ -1,0 +1,1 @@
+cd chatbot && streamlit run chat.py
